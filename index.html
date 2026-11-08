@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الريان | لتجارة إكسسوارات المطابخ والديكور</title>
+    
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0b2e59',      /* اللون النيلي الأساسي */
+                            navyLight: '#154580', /* نيلي فاتح للتأثيرات */
+                            navyDark: '#051933',  /* نيلي داكن */
+                            accent: '#e2e8f0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #ffffff; /* خلفية بيضاء نقية */
+            color: #0b2e59;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0b2e59;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #154580;
+        }
+
+        /* Product Card Hover Effect */
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(11, 46, 89, 0.1), 0 8px 10px -6px rgba(11, 46, 89, 0.1);
+        }
+
+        /* Pulse Animation for WhatsApp */
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen selection:bg-brand-navy selection:text-white">
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/9647861907071?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20منتجات%20الريان" 
+       target="_blank" 
+       rel="noopener"
+       class="fixed bottom-6 left-6 z-50 flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors animate-pulse-soft">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex flex-col justify-center">
+                <h1 class="text-3xl font-black text-brand-navy tracking-tight leading-none">الريان</h1>
+                <span class="text-[10px] sm:text-xs font-semibold text-gray-500 mt-1">لتجارة إكسسوارات المطابخ والديكور</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-gray-600">
+                <a href="#hero" class="text-brand-navy">الرئيسية</a>
+                <a href="#handles" class="hover:text-brand-navy transition-colors">اليدات والمقابض</a>
+                <a href="#categories" class="hover:text-brand-navy transition-colors">التصنيفات الأخرى</a>
+                <a href="#footer" class="hover:text-brand-navy transition-colors">تواصل معنا</a>
+            </nav>
+
+            <!-- Social & Contact -->
+            <div class="hidden sm:flex items-center gap-4">
+                <a href="https://www.facebook.com/share/1Ev4FHzg8u/" target="_blank" class="w-10 h-10 rounded-full bg-blue-50 text-brand-navy flex items-center justify-center hover:bg-brand-navy hover:text-white transition-colors">
+                    <i class="fa-brands fa-facebook-f text-lg"></i>
+                </a>
+                <a href="https://wa.me/9647861907071" target="_blank" class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center hover:bg-green-500 hover:text-white transition-colors">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden text-brand-navy text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav (Hidden by default) -->
+        <div id="mobileMenu" class="hidden border-t border-gray-100 bg-white absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#hero" class="block px-3 py-2 text-base font-bold text-brand-navy">الرئيسية</a>
+                <a href="#handles" class="block px-3 py-2 text-base font-bold text-gray-600 hover:text-brand-navy">اليدات والمقابض</a>
+                <a href="#categories" class="block px-3 py-2 text-base font-bold text-gray-600 hover:text-brand-navy">التصنيفات</a>
+                <a href="#footer" class="block px-3 py-2 text-base font-bold text-gray-600 hover:text-brand-navy">تواصل معنا</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="relative bg-white pt-16 pb-20 lg:pt-24 lg:pb-28 overflow-hidden">
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 opacity-70"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-gray-50 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 opacity-70"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-brand-navyLight text-xs font-bold mb-6 border border-blue-100">
+                    الخيار الأول لأناقة منزلك
+                </span>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-brand-navy mb-6 leading-tight">
+                    أضف لمسة من الفخامة <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-l from-brand-navy to-blue-500">لمطبخك وديكور منزلك</span>
+                </h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-500 font-medium mb-10">
+                    نقدم لك في <strong class="text-brand-navy">الريان</strong> أحدث التشكيلات من إكسسوارات المطابخ، المقابض العصرية، والحلول الذكية التي تجمع بين المتانة والجماليات العالية.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#handles" class="px-8 py-4 bg-brand-navy text-white rounded-xl font-bold text-lg hover:bg-brand-navyLight transition-colors shadow-lg shadow-brand-navy/30">
+                        استكشف تشكيلة اليدات
+                    </a>
+                    <a href="https://wa.me/9647861907071" target="_blank" class="px-8 py-4 bg-white text-brand-navy border-2 border-brand-navy rounded-xl font-bold text-lg hover:bg-gray-50 transition-colors">
+                        طلب تسعيرة عبر الواتساب
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Categories Section (Empty/Coming Soon) -->
+        <section id="categories" class="py-16 bg-gray-50 border-y border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between mb-10">
+                    <h3 class="text-2xl font-black text-brand-navy">تصفح حسب القسم</h3>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Active Category -->
+                    <a href="#handles" class="group bg-white border-2 border-brand-navy rounded-2xl p-6 text-center shadow-md transition-all hover:shadow-lg">
+                        <div class="w-14 h-14 mx-auto bg-brand-navy text-white rounded-full flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-door-open"></i>
+                        </div>
+                        <h4 class="font-bold text-brand-navy text-lg">اليدات والمقابض</h4>
+                        <p class="text-xs text-gray-500 mt-2">تشكيلة متوفرة</p>
+                    </a>
+                    
+                    <!-- Coming Soon Categories -->
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 text-center opacity-70 grayscale">
+                        <div class="w-14 h-14 mx-auto bg-gray-100 text-gray-400 rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-600 text-lg">القواعد والأرجل</h4>
+                        <span class="inline-block mt-2 text-[10px] bg-gray-100 text-gray-500 px-2 py-1 rounded font-bold">قريباً</span>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 text-center opacity-70 grayscale">
+                        <div class="w-14 h-14 mx-auto bg-gray-100 text-gray-400 rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-600 text-lg">السكك والمفصلات</h4>
+                        <span class="inline-block mt-2 text-[10px] bg-gray-100 text-gray-500 px-2 py-1 rounded font-bold">قريباً</span>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 text-center opacity-70 grayscale">
+                        <div class="w-14 h-14 mx-auto bg-gray-100 text-gray-400 rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-600 text-lg">سلال المطابخ</h4>
+                        <span class="inline-block mt-2 text-[10px] bg-gray-100 text-gray-500 px-2 py-1 rounded font-bold">قريباً</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Handles (اليدات) Product Gallery -->
+        <section id="handles" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-14">
+                    <h3 class="text-3xl font-black text-brand-navy mb-3">تشكيلة اليدات والمقابض</h3>
+                    <p class="text-gray-500 font-medium">مجموعة مختارة من أرقى المقابض العصرية والكلاسيكية لتناسب كافة الأذواق.</p>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Product Item 1 -->
+                    <div class="product-card bg-white border border-gray-100 rounded-2xl overflow-hidden group">
+                        <div class="aspect-square bg-gray-50 relative p-4 flex items-center justify-center overflow-hidden">
+                            <!-- Placeholder image tag (uses provided filenames) -->
+                            <img src="310-B.jpg" alt="مقبض 310-B" onerror="this.src='https://placehold.co/400x400/f8fafc/0b2e59?text=صورة+المنتج'" class="max-w-full max-h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-blue-500 font-bold tracking-wide">موديل 310-B</span>
+                            <h4 class="text-lg font-bold text-brand-navy mt-1 mb-3">مقبض أسود مودرن</h4>
+                            <a href="https://wa.me/9647861907071?text=مرحباً،%20أريد%20الاستفسار%20عن%20سعر%20مقبض%20موديل%20310-B" target="_blank" class="block w-full text-center py-2.5 bg-gray-50 hover:bg-brand-navy text-brand-navy hover:text-white rounded-lg font-bold text-sm transition-colors">
+                                استفسر عن السعر
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 2 -->
+                    <div class="product-card bg-white border border-gray-100 rounded-2xl overflow-hidden group">
+                        <div class="aspect-square bg-gray-50 relative p-4 flex items-center justify-center overflow-hidden">
+                            <img src="310-BIG.jpg" alt="مقبض 310-BIG" onerror="this.src='https://placehold.co/400x400/f8fafc/0b2e59?text=صورة+المنتج'" class="max-w-full max-h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-blue-500 font-bold tracking-wide">موديل 310-BIG</span>
+                            <h4 class="text-lg font-bold text-brand-navy mt-1 mb-3">مقبض أسود طويل</h4>
+                            <a href="https://wa.me/9647861907071?text=مرحباً،%20أريد%20الاستفسار%20عن%20سعر%20مقبض%20موديل%20310-BIG" target="_blank" class="block w-full text-center py-2.5 bg-gray-50 hover:bg-brand-navy text-brand-navy hover:text-white rounded-lg font-bold text-sm transition-colors">
+                                استفسر عن السعر
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 3 -->
+                    <div class="product-card bg-white border border-gray-100 rounded-2xl overflow-hidden group">
+                        <div class="aspect-square bg-gray-50 relative p-4 flex items-center justify-center overflow-hidden">
+                            <img src="310-G.jpg" alt="مقبض 310-G" onerror="this.src='https://placehold.co/400x400/f8fafc/0b2e59?text=صورة+المنتج'" class="max-w-full max-h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-blue-500 font-bold tracking-wide">موديل 310-G</span>
+                            <h4 class="text-lg font-bold text-brand-navy mt-1 mb-3">مقبض ذهبي مطفي</h4>
+                            <a href="https://wa.me/9647861907071?text=مرحباً،%20أريد%20الاستفسار%20عن%20سعر%20مقبض%20موديل%20310-G" target="_blank" class="block w-full text-center py-2.5 bg-gray-50 hover:bg-brand-navy text-brand-navy hover:text-white rounded-lg font-bold text-sm transition-colors">
+                                استفسر عن السعر
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 4 -->
+                    <div class="product-card bg-white border border-gray-100 rounded-2xl overflow-hidden group">
+                        <div class="aspect-square bg-gray-50 relative p-4 flex items-center justify-center overflow-hidden">
+                            <img src="350-B.jpg" alt="مقبض 350-B" onerror="this.src='https://placehold.co/400x400/f8fafc/0b2e59?text=صورة+المنتج'" class="max-w-full max-h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-blue-500 font-bold tracking-wide">موديل 350-B</span>
+                            <h4 class="text-lg font-bold text-brand-navy mt-1 mb-3">مقبض زاوية حادة أسود</h4>
+                            <a href="https://wa.me/9647861907071?text=مرحباً،%20أريد%20الاستفسار%20عن%20سعر%20مقبض%20موديل%20350-B" target="_blank" class="block w-full text-center py-2.5 bg-gray-50 hover:bg-brand-navy text-brand-navy hover:text-white rounded-lg font-bold text-sm transition-colors">
+                                استفسر عن السعر
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 5 -->
+                    <div class="product-card bg-white border border-gray-100 rounded-2xl overflow-hidden group">
+                        <div class="aspect-square bg-gray-50 relative p-4 flex items-center justify-center overflow-hidden">
+                            <img src="370-B.jpg" alt="مقبض 370-B" onerror="this.src='https://placehold.co/400x400/f8fafc/0b2e59?text=صورة+المنتج'" class="max-w-full max-h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-blue-500 font-bold tracking-wide">موديل 370-B</span>
+                            <h4 class="text-lg font-bold text-brand-navy mt-1 mb-3">مقبض كلاسيك أسود</h4>
+                            <a href="https://wa.me/9647861907071?text=مرحباً،%20أريد%20الاستفسار%20عن%20سعر%20مقبض%20موديل%20370-B" target="_blank" class="block w-full text-center py-2.5 bg-gray-50 hover:bg-brand-navy text-brand-navy hover:text-white rounded-lg font-bold text-sm transition-colors">
+                                استفسر عن السعر
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 6 -->
+                    <div class="product-card bg-white border border-gray-100 rounded-2xl overflow-hidden group">
+                        <div class="aspect-square bg-gray-50 relative p-4 flex items-center justify-center overflow-hidden">
+                            <img src="Gemini_Generated_Image_2g6l8r2g6l8r2g6l.jpg" alt="مقبض ديكور" onerror="this.src='https://placehold.co/400x400/f8fafc/0b2e59?text=صورة+المنتج'" class="max-w-full max-h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-blue-500 font-bold tracking-wide">تشكيلة جديدة</span>
+                            <h4 class="text-lg font-bold text-brand-navy mt-1 mb-3">مقبض ديكوري فاخر</h4>
+                            <a href="https://wa.me/9647861907071?text=مرحباً،%20أريد%20الاستفسار%20عن%20سعر%20هذا%20المقبض" target="_blank" class="block w-full text-center py-2.5 bg-gray-50 hover:bg-brand-navy text-brand-navy hover:text-white rounded-lg font-bold text-sm transition-colors">
+                                استفسر عن السعر
+                            </a>
+                        </div>
+                    </div>
+
+                     <!-- Product Item 7 -->
+                     <div class="product-card bg-white border border-gray-100 rounded-2xl overflow-hidden group">
+                        <div class="aspect-square bg-gray-50 relative p-4 flex items-center justify-center overflow-hidden">
+                            <img src="Gemini_Generated_Image_3nveck3nveck3nve.jpg" alt="مقبض دائري" onerror="this.src='https://placehold.co/400x400/f8fafc/0b2e59?text=صورة+المنتج'" class="max-w-full max-h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-blue-500 font-bold tracking-wide">تشكيلة جديدة</span>
+                            <h4 class="text-lg font-bold text-brand-navy mt-1 mb-3">مقبض دائري مفرد</h4>
+                            <a href="https://wa.me/9647861907071?text=مرحباً،%20أريد%20الاستفسار%20عن%20سعر%20المقبض%20الدائري" target="_blank" class="block w-full text-center py-2.5 bg-gray-50 hover:bg-brand-navy text-brand-navy hover:text-white rounded-lg font-bold text-sm transition-colors">
+                                استفسر عن السعر
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 8 -->
+                    <div class="product-card bg-white border border-gray-100 rounded-2xl overflow-hidden group">
+                        <div class="aspect-square bg-gray-50 relative p-4 flex items-center justify-center overflow-hidden">
+                            <img src="Gemini_Generated_Image_b07clhb07clhb07c.jpg" alt="مقبض مخفي ذهبي" onerror="this.src='https://placehold.co/400x400/f8fafc/0b2e59?text=صورة+المنتج'" class="max-w-full max-h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <span class="text-xs text-blue-500 font-bold tracking-wide">تشكيلة جديدة</span>
+                            <h4 class="text-lg font-bold text-brand-navy mt-1 mb-3">مقبض بروفايل ذهبي</h4>
+                            <a href="https://wa.me/9647861907071?text=مرحباً،%20أريد%20الاستفسار%20عن%20سعر%20مقبض%20البروفايل" target="_blank" class="block w-full text-center py-2.5 bg-gray-50 hover:bg-brand-navy text-brand-navy hover:text-white rounded-lg font-bold text-sm transition-colors">
+                                استفسر عن السعر
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-brand-navy text-white pt-16 pb-8 border-t-[6px] border-blue-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b border-brand-navyLight">
+                
+                <!-- About -->
+                <div>
+                    <h2 class="text-4xl font-black text-white mb-4">الريان</h2>
+                    <p class="text-blue-200 text-sm leading-relaxed max-w-sm">
+                        الريان لتجارة إكسسوارات المطابخ والديكور. وجهتك الأولى والموثوقة لأحدث التصاميم والحلول العصرية التي تضفي لمسة من الجمال والفخامة لمنزلك.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4 border-b border-brand-navyLight pb-2 inline-block">روابط سريعة</h4>
+                    <ul class="space-y-3 text-sm text-blue-200">
+                        <li><a href="#hero" class="hover:text-white transition-colors">الرئيسية</a></li>
+                        <li><a href="#handles" class="hover:text-white transition-colors">تشكيلة المقابض</a></li>
+                        <li><a href="#categories" class="hover:text-white transition-colors">الأقسام الأخرى</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4 border-b border-brand-navyLight pb-2 inline-block">تواصل معنا</h4>
+                    <ul class="space-y-4 text-sm text-blue-200">
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-brand-navyLight flex items-center justify-center text-white shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="flex flex-col gap-1 font-sans" dir="ltr">
+                                <a href="tel:07861907071" class="hover:text-white transition-colors font-bold text-right text-base">0786 190 7071</a>
+                                <a href="tel:07759717071" class="hover:text-white transition-colors font-bold text-right text-base">0775 971 7071</a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 pt-2">
+                            <div class="w-8 h-8 rounded bg-brand-navyLight flex items-center justify-center text-white shrink-0">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </div>
+                            <a href="https://www.facebook.com/share/1Ev4FHzg8u/" target="_blank" class="hover:text-white transition-colors">
+                                صفحتنا على فيسبوك
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <div class="pt-8 text-center text-xs text-blue-300">
+                <p>جميع الحقوق محفوظة © 2026 الريان لتجارة إكسسوارات المطابخ والديكور.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const btn = document.getElementById('mobileMenuBtn');
+        const menu = document.getElementById('mobileMenu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+
+        // Close menu when clicking a link
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
